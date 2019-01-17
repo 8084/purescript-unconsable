@@ -1,0 +1,21 @@
+{
+  "name": "purescript-unconsable",
+  "description": "Type classes for data structures which can be `uncons`ed.",
+  "main": "",
+  "authors": [
+    "klntsky <klntsky@gmail.com>"
+  ],
+  "license": "BSD-3",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "purescript-arrays": "^5.2.0",
+    "purescript-maybe": "^4.0.1"
+  }
+}
