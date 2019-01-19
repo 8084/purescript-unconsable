@@ -1,6 +1,6 @@
 {
   "name": "purescript-unconsable",
-  "description": "Type classes for data structures which can be `uncons`ed.",
+  "description": "Type class for data structures which can be `uncons`ed + some utilities built on top of it",
   "main": "",
   "authors": [
     "klntsky <klntsky@gmail.com>"
@@ -16,6 +16,17 @@
   ],
   "dependencies": {
     "purescript-arrays": "^5.2.0",
-    "purescript-maybe": "^4.0.1"
+    "purescript-prelude": "^4.1.0",
+    "purescript-lists": "^5.3.0",
+    "purescript-maybe": "^4.0.1",
+    "purescript-catenable-lists": "^5.0.0",
+    "purescript-tuples": "^5.1.0",
+    "purescript-strings": "^4.0.1",
+    "purescript-either": "^4.1.1"
+  },
+  "devDependencies": {
+    "purescript-effect": "^2.0.0",
+    "purescript-psci-support": "^4.0.0",
+    "purescript-assert": "^4.0.0"
   }
 }
