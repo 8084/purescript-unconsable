@@ -22,7 +22,8 @@
     "purescript-catenable-lists": "^5.0.0",
     "purescript-tuples": "^5.1.0",
     "purescript-strings": "^4.0.1",
-    "purescript-either": "^4.1.1"
+    "purescript-either": "^4.1.1",
+    "purescript-nonempty": "^5.0.0"
   },
   "devDependencies": {
     "purescript-effect": "^2.0.0",
