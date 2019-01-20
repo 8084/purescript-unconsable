@@ -11,6 +11,12 @@ import Data.Either
 import Data.Array
 import Effect.Console
 
+import Data.List as L
+import Data.List.Lazy as LL
+import Data.CatQueue as CQ
+import Data.CatList as CL
+
+
 main :: Effect Unit
 main = do
   assertTrue  $ isSingleton [1]
@@ -66,8 +72,18 @@ main = do
 
     assertEqual { expected: length t1 == 1
                 , actual: isSingleton t1 }
+
     assertEqual { expected: length t1 == 0
                 , actual: isEmpty t1 }
+
+    assertEqual { expected: length t1 :: Int
+                , actual: unconsableLength t1 }
+
+    assertTrue $ checkUnconsableLaws t1
+    assertTrue $ checkUnconsableLaws (L.fromFoldable t1)
+    assertTrue $ checkUnconsableLaws (LL.fromFoldable t1)
+    assertTrue $ checkUnconsableLaws (CQ.fromFoldable t1)
+    assertTrue $ checkUnconsableLaws (CL.fromFoldable t1)
 
     for_ [-2, -1, 0,1,2,3,4,5,6,7,8] $ \n -> do
       assertEqual { expected: length t1 > n

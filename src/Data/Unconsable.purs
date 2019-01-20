@@ -1,6 +1,10 @@
 module Data.Unconsable
        ( class Unconsable
        , uncons
+
+       , unconsableLength
+       , checkUnconsableLaws
+
        , compareLength
        , compareLengths
        , isLongerThan
@@ -31,10 +35,39 @@ import Data.CatList as CL
 import Data.Tuple (Tuple(..))
 import Data.Functor (map)
 import Data.Either (Either (..))
+import Data.Foldable (class Foldable, length)
 
 
-class Unconsable t where
+-- | The only requirement for instances of this class is that
+-- | `checkUnconsableLaws` must return `true` for all possible values.
+-- |
+-- | ```
+-- | checkUnconsableLaws t =
+-- |   unconsableLength t == length t :: Int
+-- | ```
+class Foldable t <= Unconsable t where
   uncons :: forall a. t a -> Maybe { head :: a, tail :: t a }
+
+
+checkUnconsableLaws :: forall t a.
+                       Unconsable t =>
+                       t a -> Boolean
+checkUnconsableLaws t =
+  unconsableLength t == length t :: Int
+
+
+-- | Equivalent to `length`, maybe except of stack safety.
+-- |
+-- | You may want to use this function instead of `length` if `foldr` for
+-- | the particular data type you are using is not stack-safe.
+unconsableLength :: forall t a num.
+                    Unconsable t => Semiring num =>
+                    t a -> num
+unconsableLength = go zero
+  where
+    go n t = case uncons t of
+      Just { tail } -> go (add one n) tail
+      Nothing -> n
 
 
 -- | Given `Foldable` instance `F` which is also an instance of
@@ -97,8 +130,8 @@ isOfSameLength t1 t2 = compareLengths t1 t2 == EQ
 
 -- | If two lists have equal lengths, returns nothing.
 -- |
--- | If one of the lists is longer than the other, cuts the first list at the
--- | index equal to the length of the second list and returns the rest of it
+-- | If one of the lists is longer than the other, cuts the longer list at the
+-- | index equal to the length of the shorter list and returns the rest of it
 -- | (wrapped in `Either`, to allow passing lists of different types).
 -- |
 -- | You may want to use `longestTail'` instead, to avoid dealing with `Either`.
