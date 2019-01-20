@@ -1,5 +1,7 @@
 # purescript-unconsable
 
+[![Build status](https://travis-ci.org/8084/purescript-unconsable.svg?branch=master)](https://travis-ci.org/8084/purescript-unconsable)
+
 Type class for data structures which can be `uncons`ed + some utilities built on top of it.
 
 # Why this library?
