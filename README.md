@@ -35,4 +35,4 @@ Make sure that your types are instances of `Unconsable` class and refactor your 
 
 # Documentation
 
-Has not been published (yet).
+Module documentation is [published on Pursuit](https://pursuit.purescript.org/packages/purescript-unconsable).
