@@ -3,7 +3,6 @@ module Data.Unconsable
        , uncons
 
        , unconsableLength
-       , checkUnconsableLaws
 
        , compareLength
        , compareLengths
@@ -47,14 +46,6 @@ import Data.Foldable (class Foldable, length)
 -- | ```
 class Foldable t <= Unconsable t where
   uncons :: forall a. t a -> Maybe { head :: a, tail :: t a }
-
-
-checkUnconsableLaws :: forall t a.
-                       Unconsable t =>
-                       t a -> Boolean
-checkUnconsableLaws t =
-  unconsableLength t == length t :: Int
-
 
 -- | Equivalent to `length`, maybe except of stack safety.
 -- |

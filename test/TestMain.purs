@@ -79,12 +79,6 @@ main = do
     assertEqual { expected: length t1 :: Int
                 , actual: unconsableLength t1 }
 
-    assertTrue $ checkUnconsableLaws t1
-    assertTrue $ checkUnconsableLaws (L.fromFoldable t1)
-    assertTrue $ checkUnconsableLaws (LL.fromFoldable t1)
-    assertTrue $ checkUnconsableLaws (CQ.fromFoldable t1)
-    assertTrue $ checkUnconsableLaws (CL.fromFoldable t1)
-
     for_ [-2, -1, 0,1,2,3,4,5,6,7,8] $ \n -> do
       assertEqual { expected: length t1 > n
                   , actual: t1 `longerThan` n }
@@ -100,15 +94,15 @@ main = do
                   , actual: t1 `compareLengths` t2 }
 
       assertEqual { expected: (length t1 :: Int) < length t2
-                  , actual: (t1 `shorterThan` length t2 :: Int) }
+                  , actual: (t1 `shorterThan` (length t2 :: Int)) }
 
-      assertEqual { expected: length t1 > length t2 :: Int
+      assertEqual { expected: length t1 > (length t2 :: Int)
                   , actual: t1 `isLongerThan` t2 }
 
-      assertEqual { expected: length t1 < length t2 :: Int
+      assertEqual { expected: length t1 < (length t2 :: Int)
                   , actual: t1 `isShorterThan` t2 }
 
-      assertEqual { expected: length t1 == length t2 :: Int
+      assertEqual { expected: length t1 == (length t2 :: Int)
                   , actual: t1 `isOfSameLength` t2 }
 
       -- log $ "longestTail " <> show t1 <> " " <>  show t2 <> " == " <> show (longestTail t1 t2)
